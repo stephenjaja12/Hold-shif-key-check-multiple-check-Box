@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Hold shift and check multiple times</title>
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+
+    <body>
+      
+        
+        <div class="container">
+
+            <div class="check-box">
+                <input type="checkbox">
+                <p>This is an inbox layout</p>
+            </div>
+
+            <div class="check-box">
+                <input type="checkbox">
+                <p>Check one time</p>
+            </div>
+
+            <div class="check-box">
+                <input type="checkbox">
+                <p>Hold your shift key</p>
+            </div>
+
+            <div class="check-box">
+                <input type="checkbox">
+                <p>Check a lower item</p>
+            </div>
+
+            <div class="check-box">
+                <input type="checkbox">
+                <p>Everything in between should also be checked to check</p>
+            </div>
+
+            <div class="check-box">
+                <input type="checkbox">
+                <p>Try It with out any libaries</p>
+            </div>
+
+            <div class="check-box">
+                <input type="checkbox">
+                <p>Don't forget to tweet</p>
+            </div>
+
+            <div class="check-box">
+                <input type="checkbox">
+                <p>Just regular java script</p>
+            </div>
+
+            <div class="check-box" style="border-bottom:none;">
+                <input type="checkbox">
+                <p>Good luck</p>
+            </div>
+            
+        </div>
+        <script>
+            //Get your data to work with
+            const allCheckBox = document.querySelectorAll('input[type="checkbox"]') ;
+            
+            let lastChecked;
+            //your function to handle your chcek if you shift key is pressed don while click function
+            function handleCheck(e){ 
+                //check if the had the shift key down
+                //check if they are checking it 
+                let inBetween = false;
+                if (e.shiftKey && this.checked) {
+                    // go ahead and do what we please
+                    // loop over every single checkbox
+                    allCheckBox.forEach(checkbox => {
+                        console.log(checkbox);
+                        if (checkbox === this || checkbox === lastChecked) {
+                            inBetween = !inBetween;
+                            console.log('STarting to check them inbetween!');
+                        }//this brought back a different inBetween which 
+
+                        if (inBetween) {
+                            checkbox.checked = true;
+                        }
+                    });
+                }
+
+                lastChecked = this;
+            }
+               
+            
+
+            // adding your event listeners to all check boxes
+            allCheckBox.forEach((checkBox)=> checkBox.addEventListener('click', handleCheck));
+        </script>
+
+    </body>
+
+</html>
